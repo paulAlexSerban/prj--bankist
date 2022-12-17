@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "echo 'js unit testing should be implemented here - but - not yet'",
     "lint": "gulp lint --require @babel/register --gulpfile build",
     "compile": "gulp compile --require @babel/register --gulpfile build",
     "watch": "gulp watch --require @babel/register --gulpfile build"
