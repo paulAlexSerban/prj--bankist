@@ -1,0 +1,63 @@
+---
+name: Develop Docker
+on:
+  push:
+    branches-ignore:
+      - release
+      - main
+      - develop
+  workflow_call:
+
+jobs:
+  test-docker:
+    name: Test Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: "🔍  Verify Changed Traefik files ./docker or *.Dockerfile"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-traefik-proxy-docker
+        with:
+          files: |
+              docker/*.traefik-proxy.yml
+              **/traefik-entrypoints.yml
+
+      - name: "🔍  Verify Changed Nginx files ./docker or *.Dockerfile"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-nginx-docker
+        with:
+          files: |
+              docker/*.nginx.yml
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-nginx-docker.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+          for file in ${{ steps.changed-traefik-proxy-docker.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+      - name: "🐳  Start Traefik Docker Containers"
+        if: steps.changed-traefik-proxy-docker.outputs.any_changed == 'true'
+        run: bash scripts/docker/traefik/start.bash
+
+      - name: "🐳  Start Static Nginx Docker Containers"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        run: bash scripts/docker/static/start.bash
+
+      - name: "🧪  List Running Containers"
+        if: steps.changed-traefik-proxy-docker.outputs.any_changed == 'true'
+        run: docker ps -a
+
+      - name: "🧪 Test Traefik container"
+        if: steps.changed-traefik-proxy-docker.outputs.any_changed == 'true'
+        run: bash scripts/docker/traefik/test.bash
+
+      - name: "🧪 Test Static Nginx Docker Container"
+        if: steps.changed-nginx-docker.outputs.any_changed == 'true'
+        run: bash scripts/docker/static/test.bash

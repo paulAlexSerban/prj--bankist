@@ -1,0 +1,83 @@
+---
+name: Develop Frontend Static Collection
+
+on:
+  push:
+    branches-ignore:
+      - release
+      - main
+      - develop
+
+  pull_request:
+    types: [opened, synchronize]
+
+  workflow_dispatch:
+
+jobs:
+  build-frontend:
+    name: Build Frontend Static Collection
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'event name is:' ${{ github.event_name }}
+      - run: echo 'event type is:' ${{ github.event.action }}
+      - name: "📥  checkout repository"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: "🔍  Verify Changed Frontend Static Collection Files"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-frontend-files
+        with:
+          files: |
+              frontend/living-style-guide/**/*.scss
+              frontend/js-component-library/**/*.js
+              frontend/static/**/*
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-frontend-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+      - name: "🔄  Cache node_modules"
+        if: steps.changed-frontend-files.outputs.any_changed == 'true'
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: "🔧  Setup NodeJS 14.20.1"
+        if: steps.changed-frontend-files.outputs.any_changed == 'true'
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.20.1
+
+      - name: "🔧  Install npm@latest"
+        if: steps.changed-frontend-files.outputs.any_changed == 'true'
+        run: npm i -g npm@latest
+
+      - name: "📦  Install Frontend Front-end Component Collection Development dependencies"
+        if: steps.changed-frontend-files.outputs.any_changed == 'true'
+        run: |
+          bash scripts/frontend/living-style-guide/install.bash
+          bash scripts/frontend/js-component-library/install.bash
+          bash scripts/frontend/static/install.bash
+          bash scripts/assets/install.bash
+
+      - name: '🧪  Test Frontend Living Style Guide'
+        if: steps.changed-frontend-files.outputs.any_changed == 'true' && github.event_name == 'push'
+        run: bash scripts/frontend/living-style-guide/test.bash
+
+      - name: '🧪  Test Frontend JavaScript Component Library'
+        if: steps.changed-frontend-files.outputs.any_changed == 'true' && github.event_name == 'push'
+        run: bash scripts/frontend/js-component-library/test.bash
+
+      - name: "🏗️  Build Frontend Static"
+        if: steps.changed-frontend-files.outputs.any_changed == 'true' && github.event_name == 'pull_request'
+        run: |
+          bash scripts/assets/process.bash
+          bash scripts/frontend/static/build.bash production
