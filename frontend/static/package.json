@@ -1,0 +1,34 @@
+{
+  "name": "static",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "wiki"
+  },
+  "scripts": {
+    "lint": "gulp lint --require @babel/register --gulpfile build",
+    "watch": "gulp watch --require @babel/register --gulpfile build",
+    "build": "gulp build --require @babel/register --gulpfile build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/plugin-transform-runtime": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/register": "^7.18.9",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-debug": "^4.0.0",
+    "gulp-embed-svg": "^1.4.8",
+    "gulp-htmllint": "^0.0.19",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-if": "^3.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-prettier": "^4.0.0",
+    "gulp-size": "^4.0.1",
+    "gulp-wait": "^0.0.2",
+    "path": "^0.12.7"
+  }
+}
