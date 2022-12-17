@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/png" href="/assets/icons/icon.png" />
+    <link rel="shortcut icon" type="image/png" href="/icons/icon.png" />
 
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="/css/page/app.page.css" />
     <title>Bankist</title>
   </head>
-  <body>
+  <body data-js="AppPage">
     <!-- TOP NAVIGATION -->
-    <nav>
-      <p class="welcome">Log in to get started</p>
-      <img src="/assets/icons/logo.png" alt="Logo" class="logo" />
+    <nav class="navigation__base" data-js="Navigation" >
+      <p class="navigation__welcome js-welcome">Log in to get started</p>
+      <img src="/icons/logo.png" alt="Logo" class="logo" />
       <form class="login">
         <label>
           <input
@@ -30,16 +30,16 @@
         <!-- In practice, use type="password" -->
         <input
           id="pin"
-          type="text"
+          type="password"
           placeholder="PIN"
           maxlength="4"
           class="login__input login__input--pin"
         />
-        <button class="login__btn">&rarr;</button>
+        <button class="login__btn js-login-button">&rarr;</button>
       </form>
     </nav>
 
-    <main class="app">
+    <main class="app" id="app-container">
       <!-- BALANCE -->
       <div class="balance">
         <div>
@@ -137,9 +137,9 @@
       </p>
     </main>
 
-    <!-- <footer>
+    <footer>
       &copy; by Jonas Schmedtmann. Don't claim as your own :)
-    </footer> -->
+    </footer>
 
     <script src="/javascript/page/app.page.js"></script>
   </body>
