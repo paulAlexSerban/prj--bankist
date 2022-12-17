@@ -1,5 +1,5 @@
 ---
-name: Develop Frontend Front-end Component Collection
+name: Develop Frontend Static Collection
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
 
 jobs:
   build-frontend:
-    name: Build Frontend Front-end Component Collection
+    name: Build Frontend Static Collection
     runs-on: ubuntu-latest
     steps:
       - run: echo 'event name is:' ${{ github.event_name }}
@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: "🔍  Verify Changed Frontend Front-end Component Collection Files"
+      - name: "🔍  Verify Changed Frontend Static Collection Files"
         uses: tj-actions/changed-files@v23.1
         id: changed-frontend-files
         with:
