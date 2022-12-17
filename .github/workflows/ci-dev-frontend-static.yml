@@ -66,7 +66,7 @@ jobs:
           bash scripts/frontend/living-style-guide/install.bash
           bash scripts/frontend/js-component-library/install.bash
           bash scripts/frontend/static/install.bash
-          bash scripts/assets-install.bash
+          bash scripts/assets/install.bash
 
       - name: '🧪  Test Frontend Living Style Guide'
         if: steps.changed-frontend-files.outputs.any_changed == 'true' && github.event_name == 'push'
