@@ -1,27 +1,9 @@
 import { accounts } from "./data";
-
-(() => {
-  const AppPage = (el) => {
-    const elements = {};
-    const states = {};
-    const data = {};
-
-    const setupDomReference = () => {
-      elements.el = el;
-    };
-
-    const init = () => {
-      setupDomReference();
-      console.log({ page: { elements, states, data } });
-    };
-
-    init();
-  };
-
-  document.querySelectorAll(`[data-js="AppPage"]`).forEach((el) => {
-    AppPage(el);
-  });
-})();
+import { publish, subscribe } from "./messagePubSub";
+import Navigation from "./Navigation";
+import Wallet from "./Wallet";
+import AppPageTemplate from "./AppPageTemplate";
+import Login from "./Login";
 
 (() => {
   /////////////////////////////////////////////////
@@ -53,52 +35,7 @@ import { accounts } from "./data";
   /////////////////////////////////////////////////
   // Functions
 
-  const displayMovements = function (movements, sort = false) {
-    containerMovements.innerHTML = "";
 
-    const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
-
-    movs.forEach(function (mov, i) {
-      const type = mov > 0 ? "deposit" : "withdrawal";
-
-      const html = `
-      <div class="movements__row">
-        <div class="movements__type movements__type--${type}">
-          ${i + 1} ${type}</div>
-        <div class="movements__value">${mov}€</div>
-      </div>
-    `;
-
-      containerMovements.insertAdjacentHTML("afterbegin", html);
-    });
-  };
-
-  const calcDisplayBalance = function (acc) {
-    acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-    labelBalance.textContent = `${acc.balance}€`;
-  };
-
-  const calcDisplaySummary = function (acc) {
-    const incomes = acc.movements
-      .filter((mov) => mov > 0)
-      .reduce((acc, mov) => acc + mov, 0);
-    labelSumIn.textContent = `${incomes}€`;
-
-    const out = acc.movements
-      .filter((mov) => mov < 0)
-      .reduce((acc, mov) => acc + mov, 0);
-    labelSumOut.textContent = `${Math.abs(out)}€`;
-
-    const interest = acc.movements
-      .filter((mov) => mov > 0)
-      .map((deposit) => (deposit * acc.interestRate) / 100)
-      .filter((int, i, arr) => {
-        // console.log(arr);
-        return int >= 1;
-      })
-      .reduce((acc, int) => acc + int, 0);
-    labelSumInterest.textContent = `${interest}€`;
-  };
 
   const createUsernames = function (accs) {
     accs.forEach(function (acc) {
@@ -111,20 +48,8 @@ import { accounts } from "./data";
   };
   createUsernames(accounts);
 
-  const updateUI = function (acc) {
-    // Display movements
-    displayMovements(acc.movements);
-
-    // Display balance
-    calcDisplayBalance(acc);
-
-    // Display summary
-    calcDisplaySummary(acc);
-  };
-
   ///////////////////////////////////////
   // Event handlers
-  let currentAccount;
 
   btnTransfer.addEventListener("click", function (e) {
     e.preventDefault();
@@ -137,15 +62,15 @@ import { accounts } from "./data";
     if (
       amount > 0 &&
       receiverAcc &&
-      currentAccount.balance >= amount &&
-      receiverAcc?.username !== currentAccount.username
+      global.document.data.currentAccount.balance >= amount &&
+      receiverAcc?.username !== global.document.data.currentAccount.username
     ) {
       // Doing the transfer
-      currentAccount.movements.push(-amount);
+      global.document.data.currentAccount.movements.push(-amount);
       receiverAcc.movements.push(amount);
 
       // Update UI
-      updateUI(currentAccount);
+      updateUI(global.document.data.currentAccount);
     }
   });
 
@@ -156,13 +81,15 @@ import { accounts } from "./data";
 
     if (
       amount > 0 &&
-      currentAccount.movements.some((mov) => mov >= amount * 0.1)
+      global.document.data.currentAccount.movements.some(
+        (mov) => mov >= amount * 0.1
+      )
     ) {
       // Add movement
-      currentAccount.movements.push(amount);
+      global.document.data.currentAccount.movements.push(amount);
 
       // Update UI
-      updateUI(currentAccount);
+      updateUI(global.document.data.currentAccount);
     }
     inputLoanAmount.value = "";
   });
@@ -171,11 +98,12 @@ import { accounts } from "./data";
     e.preventDefault();
 
     if (
-      inputCloseUsername.value === currentAccount.username &&
-      Number(inputClosePin.value) === currentAccount.pin
+      inputCloseUsername.value ===
+        global.document.data.currentAccount.username &&
+      Number(inputClosePin.value) === global.document.data.currentAccount.pin
     ) {
       const index = accounts.findIndex(
-        (acc) => acc.username === currentAccount.username
+        (acc) => acc.username === global.document.data.currentAccount.username
       );
       console.log(index);
       // .indexOf(23)
@@ -193,59 +121,25 @@ import { accounts } from "./data";
   let sorted = false;
   btnSort.addEventListener("click", function (e) {
     e.preventDefault();
-    displayMovements(currentAccount.movements, !sorted);
+    displayMovements(global.document.data.currentAccount.movements, !sorted);
     sorted = !sorted;
   });
+})();
 
-  const Navigation = (el, parent) => {
-    const elements = {};
-    const states = {};
-    const data = {};
+(() => {
+  document.querySelectorAll(`[data-js="AppPage"]`).forEach((el) => {
+    AppPageTemplate(el);
+  });
 
-    const setupDomReference = () => {
-      elements.parent = parent;
-      elements.el = el;
-      elements.labelWelcome = document.querySelector(".js-welcome");
-      elements.btnLogin = document.querySelector(".js-login-button");
-    };
-
-    const setupEventListeners = () => {
-      elements.btnLogin.addEventListener("click", function (e) {
-        e.preventDefault();
-        loginAccount();
-      });
-    };
-
-    const loginAccount = () => {
-      currentAccount = accounts.find(
-        (acc) => acc.username === inputLoginUsername.value
-      );
-
-      if (currentAccount?.pin === Number(inputLoginPin.value)) {
-        // Display UI and message
-        elements.labelWelcome.textContent = `Welcome back, ${
-          currentAccount.owner.split(" ")[0]
-        }`;
-        containerApp.style.opacity = 100;
-
-        // Clear input fields
-        inputLoginUsername.value = inputLoginPin.value = "";
-        inputLoginPin.blur();
-
-        // Update UI
-        updateUI(currentAccount);
-      }
-    };
-    const init = () => {
-      setupDomReference();
-      setupEventListeners();
-      console.log({ navigation: { elements, states, data } });
-    };
-
-    init();
-  };
+  document.querySelectorAll(`[data-js="Login"]`).forEach((el) => {
+    Login(el, el.parentNode.closest("[data-js]"));
+  });
 
   document.querySelectorAll(`[data-js="Navigation"]`).forEach((el) => {
-    Navigation(el, el.parentNode);
+    Navigation(el, el.parentNode.closest("[data-js]"));
+  });
+
+  document.querySelectorAll(`[data-js="Wallet"]`).forEach((el) => {
+    Wallet(el, el.parentNode.closest("[data-js]"));
   });
 })();
