@@ -1,0 +1,78 @@
+---
+name: Lint Scripts
+on:
+  push:
+    branches-ignore:
+      - release
+      - main
+      - develop
+  workflow_call:
+
+jobs:
+  lint:
+    name: Lint Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥 Checkout repository"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: "🔍  Verify Changed .yaml files"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-yaml-files
+        with:
+          files: |
+              *.yml
+              **/*.yml
+
+      - name: "🔍  Verify Changed .bash or .sh files"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-bash-files
+        with:
+          files: |
+              *.bash
+              *.sh
+              **/*.bash
+              **/*.sh
+      
+      - name: "🔍  Verify Changed Nginx configuration"
+        uses: tj-actions/changed-files@v23.1
+        id: changed-nginx-config
+        with:
+          files: |
+              backend/nginx/config
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-yaml-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+          for file in ${{ steps.changed-bash-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+          for file in ${{ steps.changed-nginx-config.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+      - name: "🧪 Lint Yaml"
+        if: steps.changed-yaml-files.outputs.any_changed == 'true'
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: ./**/*.yml
+      
+      - name: "🧪  Lint Bash Script with ShellCheck"
+        if: steps.changed-bash-files.outputs.any_changed == 'true'
+        uses: azohra/shell-linter@latest
+        with:
+          path: |
+            ./**/*.bash
+            ./**/*.sh
+
+      - name: "🧪  Lint Nginx configuration using Gixy"
+        if: steps.changed-nginx-config.outputs.any_changed == 'true'
+        uses: docker://yandex/gixy:latest
+        with:
+          args: /github/workspace/backend/nginx/config/default.conf
