@@ -3,7 +3,7 @@
 cd "$(dirname "$0")" || exit
 
 echo "🟢  START ALL 🐳  Docker conatiners "
-docker-compose --env-file ../config.env \
-  --file ../docker/docker-compose.traefik-proxy.yml \
-  --file ../docker/docker-compose.static.yml \
+docker-compose --env-file ../../config.env \
+  --file ../../docker/docker-compose.traefik-proxy.yml \
+  --file ../../docker/docker-compose.static.yml \
   up --detach --build

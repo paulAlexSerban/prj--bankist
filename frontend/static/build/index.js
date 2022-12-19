@@ -27,7 +27,7 @@ const getJavaScript = () => {
 };
 
 const getAssets = () => {
-  return src("../assets/dist/**/*", { since: lastRun(getAssets) })
+  return src("../../assets/dist/**/*", { since: lastRun(getAssets) })
   .pipe(plumber())
   .pipe(debug({ title: "ASSETS : " }))
   .pipe(dest("dist"));
