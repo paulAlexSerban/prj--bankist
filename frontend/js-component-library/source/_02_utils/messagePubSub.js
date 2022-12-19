@@ -34,14 +34,3 @@ export const callStack = (message, params) => {
     }
   }
 };
-
-// Add event for author publish comunication
-window.addEventListener("message", (e) => {
-  if (e && e.data) {
-    const { message, params } = e.data;
-
-    if (message && !Array.isArray(params)) {
-      callStack(message, params);
-    }
-  }
-});

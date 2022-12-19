@@ -1,5 +1,4 @@
-import { accounts } from "./data";
-import { publish, subscribe } from "./messagePubSub";
+import { subscribe } from "../../_02_utils/messagePubSub";
 
 const Navigation = (el, parent) => {
   const elements = {};
@@ -15,15 +14,14 @@ const Navigation = (el, parent) => {
 
   const setupEventListeners = () => {
     subscribe("login::user", () => {
-      displayUI();
+      elements.labelWelcome.textContent = `Welcome back, ${
+        data.currentAccount.owner.split(" ")[0]
+      }`;
     });
-  };
 
-  const displayUI = () => {
-    elements.labelWelcome.textContent = `Welcome back, ${
-      data.currentAccount.owner.split(" ")[0]
-    }`;
-    elements.containerApp.style.opacity = 100;
+    subscribe("timer:logout", () => {
+      elements.labelWelcome.textContent = "Log in to get started";
+    });
   };
 
   const init = () => {

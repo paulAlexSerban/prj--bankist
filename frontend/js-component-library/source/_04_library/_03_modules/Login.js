@@ -1,10 +1,10 @@
-import { accounts } from "./data";
-import { publish, subscribe } from "./messagePubSub";
+import { publish } from "../../_02_utils/messagePubSub";
 
 const Login = (el) => {
   const elements = {};
   const states = {};
   const data = global.document.data;
+  const accounts = global.document.accounts;
 
   const setupDomReference = () => {
     elements.parent = parent;
@@ -15,7 +15,7 @@ const Login = (el) => {
   };
 
   const setupEventListeners = () => {
-    elements.btnLogin.addEventListener("click", function (e) {
+    elements.btnLogin.addEventListener("click", (e) => {
       e.preventDefault();
       loginAccount();
     });
@@ -26,11 +26,14 @@ const Login = (el) => {
       (acc) => acc.username === elements.inputLoginUsername.value
     );
 
-    if (data.currentAccount?.pin === Number(elements.inputLoginPin.value)) {
+    if (data.currentAccount?.pin === +elements.inputLoginPin.value) {
       clearInputFields();
       publish("login::user", data.currentAccount);
-      // updateUI(data.currentAccount); // use publish/subscibe to trigger displayUI from wallet
     }
+
+
+
+
   };
 
   const clearInputFields = () => {
