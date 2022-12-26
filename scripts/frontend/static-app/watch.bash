@@ -3,4 +3,4 @@
 cd "$(dirname "$0")" || exit
 
 echo "👀  Watching Frontend Static Website"
-npm --prefix ../../../frontend/static run watch
+npm --prefix ../../../frontend/static-app run watch

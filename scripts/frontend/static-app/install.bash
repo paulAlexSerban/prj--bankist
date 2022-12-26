@@ -3,6 +3,6 @@
 cd "$(dirname "$0")" || exit
 
 echo "🛑  Cleaning Frontend Static Website node_modules"
-rm -rfv ../../../frontend/static/node_modules
+rm -rfv ../../../frontend/static-app/node_modules
 echo "🔧  Installing Frontend Static Website"
-npm --prefix ../../../frontend/static install
+npm --prefix ../../../frontend/static-app install

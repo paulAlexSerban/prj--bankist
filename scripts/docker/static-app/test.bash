@@ -3,4 +3,4 @@
 cd "$(dirname "$0")" || exit
 
   echo "🧪  TEST Nginx Static Website Server container"
-  bash ../../../docker/test/check-docker-container.bash static
+  bash ../../../docker/test/check-docker-container.bash static-app
