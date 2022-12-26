@@ -1,5 +1,5 @@
 import { accounts } from "../../_01_abstracts/constants/data";
-import AppPageTemplate from "../_01_templates/AppPageTemplate";
+import AppTemplate from "../_01_templates/AppTemplate";
 
 (() => {
   global.document.data = {};
@@ -16,7 +16,7 @@ import AppPageTemplate from "../_01_templates/AppPageTemplate";
 
   createUsernames(global.document.accounts);
 
-  document.querySelectorAll(`[data-js="AppPageTemplate"]`).forEach((el) => {
-    AppPageTemplate(el);
+  document.querySelectorAll(`[data-js="AppTemplate"]`).forEach((el) => {
+    AppTemplate(el);
   });
 })();

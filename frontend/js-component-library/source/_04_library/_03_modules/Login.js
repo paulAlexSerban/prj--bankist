@@ -30,10 +30,6 @@ const Login = (el) => {
       clearInputFields();
       publish("login::user", data.currentAccount);
     }
-
-
-
-
   };
 
   const clearInputFields = () => {

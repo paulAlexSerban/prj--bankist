@@ -15,5 +15,5 @@ import { processAudio } from "./tasks/processAudio";
 // ---------------------------------------------------------------------
 task(
   "process",
-  series(clean, parallel( processIcons))
+  series(clean, parallel( processIcons, createImageRenditions, processSvgs))
 );

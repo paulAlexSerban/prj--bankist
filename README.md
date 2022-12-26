@@ -10,4 +10,5 @@
 
 ## Local Dev URLs
 
-- [App](https://nginx-app-bankist.localhost/)
+- [Static App](https://nginx-app-bankist.localhost/)
+- [Static Landing](https://nginx-landing-bankist.localhost/)
