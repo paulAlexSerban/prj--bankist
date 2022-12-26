@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/paulAlexSerban/prj--bankist/compare/v1.0.0...v1.1.0) (2022-12-26)
+
+
+### Features
+
+* **app:** added initial app logic and sgtyles ([89f7b62](https://github.com/paulAlexSerban/prj--bankist/commit/89f7b623a8b1659c2ff5f4bf076ae2e8e874a959))
+
 # 1.0.0 (2022-12-19)
 
 
