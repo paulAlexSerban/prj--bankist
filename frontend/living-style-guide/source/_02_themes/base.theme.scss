@@ -1,0 +1,15 @@
+/* ------------------------------------ *\
+  # BASE THEME
+\* ------------------------------------ */
+
+@function color($color-definition, $color-name) {
+  @if (not map-get($color-definition, $color-name)) {
+    @error "#{$color-name} is not a valid color color-name.";
+  }
+  @return map-get($color-definition, $color-name);
+}
+
+:root {
+  --text-color: #444;
+  --base-bkg-color: #f3f3f3;
+}

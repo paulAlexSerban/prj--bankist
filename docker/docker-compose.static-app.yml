@@ -5,25 +5,25 @@ services:
   # ---------------------------------------------------------------------
   # | Nginx-Service                                                     |
   # ---------------------------------------------------------------------
-  nginx:
+  nginx-app:
     build:
-      context: ../backend/static
-      dockerfile: static.Dockerfile
-    container_name: static
+      context: ../backend/static-app
+      dockerfile: static-app.Dockerfile
+    container_name: static-app
     restart: unless-stopped
     volumes:
-      - ../frontend/static/dist:/usr/share/nginx/html
+      - ../frontend/static-app/dist:/usr/share/nginx/html
     labels:
       - traefik.enable=true
       # Routers
-      - traefik.http.routers.static.entrypoints=web
-      - traefik.http.routers.static.middlewares=test-redirectscheme
-      - traefik.http.routers.static-secure.entrypoints=websecure
-      - traefik.http.routers.static-secure.tls.certresolver=myresolver
-      - traefik.http.routers.static-secure.tls=true
-      - traefik.http.routers.static-secure.middlewares=test-compress,test-redirectscheme
+      - traefik.http.routers.static-app.entrypoints=web
+      - traefik.http.routers.static-app.middlewares=test-redirectscheme
+      - traefik.http.routers.static-app-secure.entrypoints=websecure
+      - traefik.http.routers.static-app-secure.tls.certresolver=myresolver
+      - traefik.http.routers.static-app-secure.tls=true
+      - traefik.http.routers.static-app-secure.middlewares=test-compress,test-redirectscheme
       # Services
-      - traefik.http.services.static-secure.loadbalancer.server.port=80
+      - traefik.http.services.static-app-secure.loadbalancer.server.port=80
       # Middlewares
       - traefik.http.middlewares.test-compress.compress=true
       - traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https
