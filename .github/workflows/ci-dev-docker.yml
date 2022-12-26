@@ -48,7 +48,7 @@ jobs:
 
       - name: "🐳  Start Static Nginx Docker Containers"
         if: steps.changed-nginx-docker.outputs.any_changed == 'true'
-        run: bash scripts/docker/static/start.bash
+        run: bash scripts/docker/static-app/start.bash
 
       - name: "🧪  List Running Containers"
         if: steps.changed-traefik-proxy-docker.outputs.any_changed == 'true'
@@ -60,4 +60,4 @@ jobs:
 
       - name: "🧪 Test Static Nginx Docker Container"
         if: steps.changed-nginx-docker.outputs.any_changed == 'true'
-        run: bash scripts/docker/static/test.bash
+        run: bash scripts/docker/static-app/test.bash

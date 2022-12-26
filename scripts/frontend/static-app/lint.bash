@@ -2,4 +2,4 @@
 # makes sure the folder containing the script will be the root folder
 cd "$(dirname "$0")" || exit
 echo "🔍  Lint Frontend Static Website"
-npm --prefix ../../../frontend/static run lint
+npm --prefix ../../../frontend/static-app run lint

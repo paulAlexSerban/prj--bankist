@@ -32,7 +32,7 @@ jobs:
           files: |
               frontend/living-style-guide/**/*.scss
               frontend/js-component-library/**/*.js
-              frontend/static/**/*
+              frontend/static-app/**/*
 
       - name: List all changed files
         run: |
@@ -65,7 +65,7 @@ jobs:
         run: |
           bash scripts/frontend/living-style-guide/install.bash
           bash scripts/frontend/js-component-library/install.bash
-          bash scripts/frontend/static/install.bash
+          bash scripts/frontend/static-app/install.bash
           bash scripts/assets/install.bash
 
       - name: '🧪  Test Frontend Living Style Guide'
@@ -80,4 +80,4 @@ jobs:
         if: steps.changed-frontend-files.outputs.any_changed == 'true' && github.event_name == 'pull_request'
         run: |
           bash scripts/assets/process.bash
-          bash scripts/frontend/static/build.bash production
+          bash scripts/frontend/static-app/build.bash production
