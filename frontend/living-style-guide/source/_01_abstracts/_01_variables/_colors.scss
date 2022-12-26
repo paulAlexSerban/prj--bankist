@@ -1,0 +1,127 @@
+/* ------------------------------------ *\
+  COLORS
+\* ------------------------------------ */
+
+@charset "utf-8";
+
+// Colors examples
+
+// purples
+$c-purple:                  #5a3a97;
+$c-purple-50:               #ede7f6;
+$c-purple-100:              #d1c4e9;
+$c-purple-200:              #b39ddb;
+$c-purple-300:              #9575cd;
+$c-purple-400:              #7e57c2;
+$c-purple-500:              #673ab7;
+$c-purple-600:              #5e35b1;
+$c-purple-700:              #512da8;
+$c-purple-800:              #4527a0;
+$c-purple-900:              #311b92;
+
+// greyscale
+$c-black:                   #110b1f;
+$c-white:                   #fff;
+$c-white-50:                rgba(255, 255, 255, 0.5);
+$c-lightbox-bg:             rgba(0, 0, 0, 0.5);
+
+$c-grey-50:                 #fafafa;
+$c-grey-100:                #f5f5f5;
+$c-grey-200:                #eee;
+$c-grey-300:                #e0e0e0;
+$c-grey-400:                #bdbdbd;
+$c-grey-500:                #9e9e9e;
+$c-grey-600:                #757575;
+$c-grey-700:                #616161;
+$c-grey-800:                #424242;
+$c-grey-900:                #110c1e;
+$c-black:                   #000;
+
+
+$c-light: (
+  light: #fff,
+  light-10: rgba(#fff, 0.1),
+  light-15: rgba(#fff, 0.15),
+  light-40: rgba(white, 0.4),
+  cultured: #eee,
+  gainsboro-white: #e0e0e0,
+);
+
+$c-gray: (
+  battleship-grey: #888,
+  ebony: #525c52,
+  dim-grey: #696969,
+  sonic-silver: #777,
+  davys-grey: #494949,
+  spanish-gray: #999,
+  onyx: #444
+);
+
+$c-dark: (
+  eerie-black: #1f1f1f,
+  jet: #333,
+  rich-black-forga-29: #101d2c,
+  dark: #000,
+  dark-10: rgba(#000, 0.1),
+  dark-15: rgba(#000, 0.15),
+  dark-30: rgba(#000, 0.3),
+  dark-50: rgba(#000, 0.5),
+);
+
+$c-yellow: (
+  wheat: #e6d5a5,
+  lemon-meringue: #faf0ca,
+  orange-yellow-crayola: #f4d35e,
+  naples-yellow: #ffe066,
+  sunglow: #ffca2c,
+  sandy-brown: #ee964b,
+);
+
+$c-red: (
+  orange-soda: #f95738,
+  cinnabar: #e74c3c,
+  rusty-red: #dc3545,
+  sinopia: #d30,
+  ua-red: #e50050,
+  fuzzy-wuzzy: #c95e67
+);
+
+$c-brown: (
+  misty-rose: #fcdfdf,
+  rosy-brown: #bc8882,
+  rose-taupe: #925757,
+  rose-taupe-70: rgba(#925757, 0.7),
+);
+
+$c-green: (
+  honeydew: #d9efe0,
+  emerald: #2ecc71,
+  green-cyan: #3c996e,
+  sea-green: #198754,
+  polished-pine: #3d9b93,
+  charleston-green: #11282e,
+);
+
+$c-blue: (
+  alice-blue: #e1f1ff,
+  colombia-blue: #c6e6ff,
+  baby-blue-eyes: #9dd1ff,
+  vivid-sky-blue: #0dcaf0,
+  french-sky-blue: #60a9ff,
+  carolina-blue: #3498db,
+  blue-jeans: #48aaff,
+  maximum-blue: #65bad8,
+  dodger-blue: #348efe,
+  french-blue: #1d73b2,
+  blue-crayola: #016ff9,
+  indigo-blue: #0d3b66,
+  dark-liver: #444451,
+  rhythm: #7c7b9c,
+  charcoal: #2c3e50,
+);
+
+$c-traffic-lights: (
+  danger: #dc3545,
+  warning: #ffca2c,
+  success: #198754,
+);
