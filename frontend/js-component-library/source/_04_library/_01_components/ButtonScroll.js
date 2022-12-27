@@ -1,3 +1,5 @@
+import noBubbling from "../../_02_utils/noBubbling";
+
 const ButtonScroll = (el) => {
   const elements = {};
   const states = {};
@@ -11,7 +13,8 @@ const ButtonScroll = (el) => {
   };
 
   const setupEventListeners = () => {
-    elements.el.addEventListener("click", () => {
+    elements.el.addEventListener("click", (e) => {
+      noBubbling(e);
       const targetCoords = elements.target.getBoundingClientRect();
       console.log({ targetCoords });
       console.log(
