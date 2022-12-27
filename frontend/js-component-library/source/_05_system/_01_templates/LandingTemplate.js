@@ -1,4 +1,5 @@
 import CookieLoader from "../../_04_library/_03_modules/CookieLoader.js";
+import ButtonScroll from "../../_04_library/_01_components/ButtonScroll.js";
 
 const LandingTemplate = (el) => {
   const elements = {};
@@ -12,6 +13,10 @@ const LandingTemplate = (el) => {
   const loadComponents = () => {
     document.querySelectorAll(`[data-js="CookieLoader"]`).forEach((el) => {
       CookieLoader(el, el.parentNode.closest("[data-js]"));
+    });
+
+    document.querySelectorAll(`[data-js="ButtonScroll"]`).forEach((el) => {
+      ButtonScroll(el, el.parentNode.closest("[data-js]"));
     });
   };
 

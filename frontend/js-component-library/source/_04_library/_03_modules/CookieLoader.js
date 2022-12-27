@@ -6,7 +6,6 @@ import CookieMessage from "../_02_patterns/CookieMessage";
  */
 
 const CookieLoader = (el) => {
-  console.log("cookie loader loaded");
   const elements = {};
   const states = {};
   const data = global.document.data;
@@ -17,8 +16,7 @@ const CookieLoader = (el) => {
 
   const setupEventListeners = () => {};
 
-  // checkLocalStorage
-
+  // @todo - implement logic to check local storage for cookies following the diagram `CookieLoader.excalidraw`
   const checkLocalStorage = () => {
     const hasReadCookieConsent = false;
     const areCookieValid = false;
