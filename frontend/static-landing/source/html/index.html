@@ -16,7 +16,7 @@
     <script defer src="/javascript/page/landing.page.js"></script>
   </head>
   <body data-js="LandingTemplate">
-    <header class="header">
+    <header class="header" data-js="PageHeader">
       <nav class="nav" data-js="PageNavigation">
         <img
           src="/icons/logo.png"
@@ -38,7 +38,10 @@
             <a class="nav__link" href="#section--3">Testimonials</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link nav__link--btn btn--show-modal" href="#" data-js="ModalWindow"
+            <a
+              class="nav__link nav__link--btn btn--show-modal"
+              href="#"
+              data-js="ModalWindow"
               >Open account</a
             >
           </li>
@@ -54,7 +57,13 @@
           <span class="highlight">minimalist</span>
         </h1>
         <h4>A simpler banking experience for a simpler life.</h4>
-        <button class="btn--text btn--scroll-to" data-js="ButtonScroll" data-js-params='{"target": "#section--1"}'>Learn more &DownArrow;</button>
+        <button
+          class="btn--text btn--scroll-to"
+          data-js="ButtonScroll"
+          data-js-params='{"target": "#section--1"}'
+        >
+          Learn more &DownArrow;
+        </button>
         <img
           src="/images/hero-original.webp"
           class="header__img"
@@ -63,7 +72,11 @@
       </div>
     </header>
 
-    <section class="section" id="section--1">
+    <section
+      class="section section--hidden"
+      id="section--1"
+      data-js="PageSection"
+    >
       <div class="section__title">
         <h2 class="section__description">Features</h2>
         <h3 class="section__header">
@@ -73,6 +86,7 @@
 
       <div class="features">
         <img
+          data-js="LazyImage"
           src="/images/digital-lazy-original.webp"
           data-src="/images/digital-original.webp"
           alt="Computer"
@@ -95,7 +109,7 @@
         <div class="features__feature">
           <div class="features__icon">
             <svg>
-              <use xlink:href="/svgs/icons.svg#icon-trending-up"/>
+              <use xlink:href="/svgs/icons.svg#icon-trending-up" />
             </svg>
           </div>
           <h5 class="features__header">Watch your money grow</h5>
@@ -106,6 +120,7 @@
           </p>
         </div>
         <img
+          data-js="LazyImage"
           src="/images/grow-lazy-original.webp"
           data-src="/images/grow-original.webp"
           alt="Plant"
@@ -113,6 +128,7 @@
         />
 
         <img
+          data-js="LazyImage"
           src="/images/card-lazy-original.webp"
           data-src="/images/card-original.webp"
           alt="Credit card"
@@ -121,7 +137,7 @@
         <div class="features__feature">
           <div class="features__icon">
             <svg>
-              <use xlink:href="/svgs/icons.svg#icon-credit-card"/>
+              <use xlink:href="/svgs/icons.svg#icon-credit-card" />
             </svg>
           </div>
           <h5 class="features__header">Free debit card included</h5>
@@ -134,7 +150,11 @@
       </div>
     </section>
 
-    <section class="section" id="section--2">
+    <section
+      class="section section--hidden"
+      id="section--2"
+      data-js="PageSection"
+    >
       <div class="section__title">
         <h2 class="section__description">Operations</h2>
         <h3 class="section__header">
@@ -162,7 +182,7 @@
         >
           <div class="operations__icon operations__icon--1">
             <svg>
-              <use xlink:href="/svgs/icons.svg#icon-upload"/>
+              <use xlink:href="/svgs/icons.svg#icon-upload" />
             </svg>
           </div>
           <h5 class="operations__header">
@@ -179,7 +199,7 @@
         <div class="operations__content operations__content--2">
           <div class="operations__icon operations__icon--2">
             <svg>
-              <use xlink:href="/svgs/icons.svg#icon-home"/>
+              <use xlink:href="/svgs/icons.svg#icon-home" />
             </svg>
           </div>
           <h5 class="operations__header">
@@ -195,7 +215,7 @@
         <div class="operations__content operations__content--3">
           <div class="operations__icon operations__icon--3">
             <svg>
-              <use xlink:href="/svgs/icons.svg#icon-user-x"/>
+              <use xlink:href="/svgs/icons.svg#icon-user-x" />
             </svg>
           </div>
           <h5 class="operations__header">
@@ -211,7 +231,11 @@
       </div>
     </section>
 
-    <section class="section" id="section--3">
+    <section
+      class="section section--hidden"
+      id="section--3"
+      data-js="PageSection"
+    >
       <div class="section__title section__title--testimonials">
         <h2 class="section__description">Not sure yet?</h2>
         <h3 class="section__header">
@@ -219,7 +243,7 @@
         </h3>
       </div>
 
-      <div class="slider">
+      <div class="slider" data-js="Slider">
         <div class="slide">
           <div class="testimonial">
             <h5 class="testimonial__header">Best financial decision ever!</h5>
@@ -232,7 +256,11 @@
               autem esse non voluptatem saepe provident nihil molestiae.
             </blockquote>
             <address class="testimonial__author">
-              <img src="/images/user-1-original.webp" alt="user 1 photo" class="testimonial__photo" />
+              <img
+                src="/images/user-1-original.webp"
+                alt="user 1 photo"
+                class="testimonial__photo"
+              />
               <h6 class="testimonial__name">Aarav Lynn</h6>
               <p class="testimonial__location">San Francisco, USA</p>
             </address>
@@ -252,7 +280,11 @@
               deserunt exercitationem deleniti.
             </blockquote>
             <address class="testimonial__author">
-              <img src="/images/user-2-original.webp" alt="user 2 photo" class="testimonial__photo" />
+              <img
+                src="/images/user-2-original.webp"
+                alt="user 2 photo"
+                class="testimonial__photo"
+              />
               <h6 class="testimonial__name">Miyah Miles</h6>
               <p class="testimonial__location">London, UK</p>
             </address>
@@ -273,7 +305,11 @@
               alias reiciendis, perferendis facere.
             </blockquote>
             <address class="testimonial__author">
-              <img src="/images/user-3-original.webp" alt="user 3 photo" class="testimonial__photo" />
+              <img
+                src="/images/user-3-original.webp"
+                alt="user 3 photo"
+                class="testimonial__photo"
+              />
               <h6 class="testimonial__name">Francisco Gomes</h6>
               <p class="testimonial__location">Lisbon, Portugal</p>
             </address>
@@ -286,7 +322,10 @@
       </div>
     </section>
 
-    <section class="section section--sign-up">
+    <section
+      class="section section--hidden section--sign-up"
+      data-js="PageSection"
+    >
       <div class="section__title">
         <h3 class="section__header">
           The best day to join Bankist was one year ago. The second best is
@@ -337,8 +376,7 @@
     <div class="modal hidden">
       <button class="btn--close-modal">&times;</button>
       <h2 class="modal__header">
-        Open your bank account
-        in just <span class="highlight">5 minutes</span>
+        Open your bank account in just <span class="highlight">5 minutes</span>
       </h2>
       <form class="modal__form">
         <label for="first-name">First Name</label>

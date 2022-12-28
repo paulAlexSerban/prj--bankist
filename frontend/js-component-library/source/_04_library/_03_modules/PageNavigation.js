@@ -21,20 +21,24 @@ const PageNavigation = (el, parent) => {
     });
 
     // Passing "argument" into handler
-    elements.el.addEventListener('mouseover', handleHover.bind(0.5));
-    elements.el.addEventListener('mouseout', handleHover.bind(1));
+    elements.el.addEventListener("mouseover", (e) => {
+      handleHover(e, 0.5);
+    });
+    elements.el.addEventListener("mouseout", (e) => {
+      handleHover(e, 1);
+    });
   };
 
-  const handleHover = (e) => {
-    if (e.target.classList.contains('nav__link')) {
+  const handleHover = (e, opacity) => {
+    if (e.target.classList.contains("nav__link")) {
       const link = e.target;
-      const siblings = link.closest('.nav').querySelectorAll('.nav__link');
-      const logo = link.closest('.nav').querySelector('img');
+      const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+      const logo = link.closest(".nav").querySelector("img");
 
-      siblings.forEach(el => {
-        if (el !== link) el.style.opacity = this;
+      siblings.forEach((el) => {
+        if (el !== link) el.style.opacity = opacity;
       });
-      logo.style.opacity = this;
+      logo.style.opacity = opacity;
     }
   };
 

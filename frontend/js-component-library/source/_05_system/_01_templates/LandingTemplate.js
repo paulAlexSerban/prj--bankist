@@ -1,8 +1,12 @@
 import CookieLoader from "../../_04_library/_03_modules/CookieLoader.js";
 import ButtonScroll from "../../_04_library/_01_components/ButtonScroll.js";
 import ModalWindow from "../../_04_library/_01_components/ModalWindow.js";
+import PageHeader from "../../_04_library/_03_modules/PageHeader.js";
 import PageNavigation from "../../_04_library/_03_modules/PageNavigation.js";
 import TabbedComponent from "../../_04_library/_01_components/TabbedComponent.js";
+import PageSection from "../../_04_library/_02_patterns/PageSection.js";
+import LazyImage from "../../_04_library/_01_components/LazyImage.js";
+import Slider from "../../_04_library/_01_components/Slider";
 
 const LandingTemplate = (el) => {
   const elements = {};
@@ -14,6 +18,14 @@ const LandingTemplate = (el) => {
   };
 
   const loadComponents = () => {
+    document.querySelectorAll(`[data-js="PageHeader"]`).forEach((el) => {
+      PageHeader(el, el.parentNode.closest("[data-js]"));
+    });
+
+    document.querySelectorAll(`[data-js="PageSection"]`).forEach((el) => {
+      PageSection(el, el.parentNode.closest("[data-js]"));
+    });
+
     document.querySelectorAll(`[data-js="CookieLoader"]`).forEach((el) => {
       CookieLoader(el, el.parentNode.closest("[data-js]"));
     });
@@ -32,6 +44,14 @@ const LandingTemplate = (el) => {
 
     document.querySelectorAll(`[data-js="TabbedComponent"]`).forEach((el) => {
       TabbedComponent(el, el.parentNode.closest("[data-js]"));
+    });
+
+    document.querySelectorAll(`[data-js="LazyImage"]`).forEach((el) => {
+      LazyImage(el, el.parentNode.closest("[data-js]"));
+    });
+
+    document.querySelectorAll(`[data-js="Slider"]`).forEach((el) => {
+      Slider(el, el.parentNode.closest("[data-js]"));
     });
   };
 
