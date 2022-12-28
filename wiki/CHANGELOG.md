@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/paulAlexSerban/prj--bankist/compare/v1.1.0...v1.2.0) (2022-12-28)
+
+
+### Features
+
+* **button scroll:** added button scroll funcitonlaity ([a219d19](https://github.com/paulAlexSerban/prj--bankist/commit/a219d19e242d58b0ae7e7794a982f6412915cead))
+* **cookie-loader:** added cookie loader module ([311552c](https://github.com/paulAlexSerban/prj--bankist/commit/311552cbb45f2b211252cf45cd7d89a34f9d7ade))
+* **page navigation:** added page navigation ([c3232bb](https://github.com/paulAlexSerban/prj--bankist/commit/c3232bb57f68533ad4fe07f03a581037a174beb7))
+* **page-navigation:** added hover effect using javascript ([45c34af](https://github.com/paulAlexSerban/prj--bankist/commit/45c34afb3483e043a9d6356d232832a87033eaa4))
+* **slider:** added slider component ([3c61976](https://github.com/paulAlexSerban/prj--bankist/commit/3c619767ebdfdad4b70e59dff5052d4ca81c353c))
+* **tabbed-component:** added tabbed component ([e347f68](https://github.com/paulAlexSerban/prj--bankist/commit/e347f68e9fe7d969d412bbf722841c5684f3b28b))
+
 # [1.1.0](https://github.com/paulAlexSerban/prj--bankist/compare/v1.0.0...v1.1.0) (2022-12-26)
 
 
