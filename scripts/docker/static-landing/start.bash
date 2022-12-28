@@ -8,5 +8,5 @@ cd "$(dirname "$0")" || exit
 echo "🟢  START 🐳  Docker Nginx server conatiner "
 docker-compose --env-file ../../../config.env \
   --file ../../../docker/docker-compose.traefik-proxy.yml \
-  --file ../../../docker/docker-compose.static-app.yml \
+  --file ../../../docker/docker-compose.static-landing.yml \
   up --detach --build

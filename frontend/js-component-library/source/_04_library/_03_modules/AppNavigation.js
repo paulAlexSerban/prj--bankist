@@ -1,6 +1,6 @@
 import { subscribe } from "../../_02_utils/messagePubSub";
 
-const Navigation = (el, parent) => {
+const AppNavigation = (el, parent) => {
   const elements = {};
   const states = {};
   const data = global.document.data;
@@ -27,10 +27,10 @@ const Navigation = (el, parent) => {
   const init = () => {
     setupDomReference();
     setupEventListeners();
-    console.log({ navigation: { elements, states, data } });
+    console.log({ AppNavigation: { elements, states, data } });
   };
 
   init();
 };
 
-export default Navigation;
+export default AppNavigation;

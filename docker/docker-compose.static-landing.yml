@@ -1,0 +1,31 @@
+---
+version: "3.7"
+services:
+
+  # ---------------------------------------------------------------------
+  # | Nginx-Service                                                     |
+  # ---------------------------------------------------------------------
+  nginx-landing:
+    build:
+      context: ../backend/static-landing
+      dockerfile: static-landing.Dockerfile
+    container_name: static-landing
+    restart: unless-stopped
+    volumes:
+      - ../frontend/static-landing/dist:/usr/share/nginx/html
+    labels:
+      - traefik.enable=true
+      # Routers
+      - traefik.http.routers.static-landing.entrypoints=web
+      - traefik.http.routers.static-landing.middlewares=test-redirectscheme
+      - traefik.http.routers.static-landing-secure.entrypoints=websecure
+      - traefik.http.routers.static-landing-secure.tls.certresolver=myresolver
+      - traefik.http.routers.static-landing-secure.tls=true
+      - traefik.http.routers.static-landing-secure.middlewares=test-compress,test-redirectscheme
+      # Services
+      - traefik.http.services.static-landing-secure.loadbalancer.server.port=80
+      # Middlewares
+      - traefik.http.middlewares.test-compress.compress=true
+      - traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https
+      - traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true
+      - traefik.http.middlewares.test-redirectscheme.redirectscheme.port=443

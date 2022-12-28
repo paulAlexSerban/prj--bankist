@@ -1,4 +1,4 @@
-import Navigation from "../../_04_library/_03_modules/Navigation";
+import AppNavigation from "../../_04_library/_03_modules/AppNavigation";
 import Wallet from "../../_04_library/_03_modules/Wallet";
 import Login from "../../_04_library/_03_modules/Login";
 
@@ -17,7 +17,7 @@ const AppPageTemplate = (el) => {
     });
 
     document.querySelectorAll(`[data-js="Navigation"]`).forEach((el) => {
-      Navigation(el, el.parentNode.closest("[data-js]"));
+      AppNavigation(el, el.parentNode.closest("[data-js]"));
     });
 
     document.querySelectorAll(`[data-js="Wallet"]`).forEach((el) => {
